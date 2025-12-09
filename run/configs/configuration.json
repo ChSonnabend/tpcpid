@@ -10,6 +10,12 @@
             "tag": "N/A"
         }
     },
+    "masterjob": {
+        "partition": "main",
+        "time": "120",
+        "mem": "150G",
+        "cpus-per-task": "16"
+    },
     "createTrainingDatasetOptions": {
         "labels_x": [
             "fTPCInnerParam",
