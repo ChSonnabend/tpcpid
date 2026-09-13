@@ -468,7 +468,7 @@ class NN():
                                 output_names=['output'],                        # the model's output names
                                 dynamo=True,                                    # Disable torchdynamo for export: FIXME This needs to be tested with dynamic_axes=... being changed to dynamic_shapes=({0: torch.export.Dim("batch_size")},),
                                 dynamic_shapes=(
-                                    {0: torch.export.Dim("batch_size")}
+                                    "x": {0: torch.export.Dim("batch_size")}
                                 )
                                 )
 
