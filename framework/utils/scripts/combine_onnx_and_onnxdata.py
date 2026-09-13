@@ -7,6 +7,10 @@ parser = argparse.ArgumentParser()
 parser.add_argument("--dir", type=str, default=".", help="Directory containing the ONNX model and data files")
 args = parser.parse_args()
 
+# Usage: --dir is flexible and discovers the .onnx.data files in the directory and its subdirectories. It will then combine the .onnx and .onnx.data files in each same subdirectory into a single .onnx file.
+# Example: python3 combine_onnx_and_onnxdata.py --dir /lustre/alice/users/csonnab/TPC/o2-tpc-pid/output/LHC24/ar/apass3/LHC24ar_apass3_TPCSignal_small_HadronicRate_DeltaPhi/20260907/training/networks
+# This generates a new directory called combined_onnx in each subdirectory (here: network_mean, network_sigma and network_full) containing the final .onnx file with the graph and weights.
+
 for d in glob.glob(f"{args.dir}/**/*.onnx.data", recursive=True):
 
     parent_dir = os.path.dirname(d)
