@@ -26,7 +26,7 @@ for i, config_file in enumerate(args.config):
         CONFIG['settings']['framework'] = os.getcwd()
         CONFIG['dataset']['input_skimmedtree_path'] = os.getcwd() + "/run/ci/data/AO2D_mini.root"
         CONFIG['trainNeuralNetOptions'] = {
-            "execution_mode": "MEAN",                                   ### Only run one network as a proof of principle
+            "execution_mode": "FULL",                                   ### Run MEAN -> SIGMA -> FULL to produce net_onnx_full.onnx
             "configuration": os.getcwd() + "/run/ci/nnconfig.py",
             "training_file": "train_single_sigma.py",
             "numberOfEpochs": "2",
