@@ -65,7 +65,7 @@ jobs:
             bash -lc '
               set -euo pipefail
               O2PHYSICS_PACKAGE="O2Physics/daily-20260914-0000-1"
-              /cvmfs/alice.cern.ch/bin/alienv printenv "$O2PHYSICS_PACKAGE" > o2physics_env.sh
+              bash /cvmfs/alice.cern.ch/bin/alienv printenv "$O2PHYSICS_PACKAGE" > o2physics_env.sh
               source o2physics_env.sh
               command -v o2-analysis-pid-tpc-service
               command -v o2-analysis-pid-tpc-base
