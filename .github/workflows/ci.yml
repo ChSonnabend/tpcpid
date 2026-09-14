@@ -57,9 +57,22 @@ jobs:
 
       - name: Run O2Physics PID workflow
         run: |
-          source <(/cvmfs/alice.cern.ch/bin/alienv printenv O2Physics/latest)
-          ONNX_FILE="$(find run/ci/o2physics_model -name net_onnx_full.onnx -print -quit)"
-          test -n "$ONNX_FILE"
-          python3 run/ci/o2physics_pid_test.py \
-            --required \
-            --onnx "$ONNX_FILE"
+          docker run --rm \
+            -v /cvmfs:/cvmfs:ro \
+            -v "$GITHUB_WORKSPACE:$GITHUB_WORKSPACE" \
+            -w "$GITHUB_WORKSPACE" \
+            alisw/slc9-builder:latest \
+            bash -lc '
+              set -euo pipefail
+              O2PHYSICS_PACKAGE="O2Physics/daily-20260914-0000-1"
+              /cvmfs/alice.cern.ch/bin/alienv printenv "$O2PHYSICS_PACKAGE" > o2physics_env.sh
+              source o2physics_env.sh
+              command -v o2-analysis-pid-tpc-service
+              command -v o2-analysis-pid-tpc-base
+              command -v o2-analysis-event-selection-service
+              ONNX_FILE="$(find run/ci/o2physics_model -name net_onnx_full.onnx -print -quit)"
+              test -n "$ONNX_FILE"
+              python3 run/ci/o2physics_pid_test.py \
+                --required \
+                --onnx "$ONNX_FILE"
+            '
