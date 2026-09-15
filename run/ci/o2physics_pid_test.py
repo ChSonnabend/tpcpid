@@ -171,7 +171,6 @@ def main():
 
     needed = [
         "o2-analysis-event-selection-service",
-        "o2-analysis-pid-tpc-base",
         "o2-analysis-pid-tpc-service",
     ]
     missing = [name for name in needed if shutil.which(name) is None]
@@ -191,7 +190,6 @@ def main():
     option = f"-b --configuration json://{shlex.quote(str(config))} --aod-memory-rate-limit 2000000000 --shm-segment-size 4000000000 --resources-monitoring 0 --min-failure-level error"
     command = (
         f"o2-analysis-event-selection-service {option} --aod-file {shlex.quote(str(aod_file))} | "
-        f"o2-analysis-pid-tpc-base {option} | "
         f"o2-analysis-pid-tpc-service {option}"
     )
 
