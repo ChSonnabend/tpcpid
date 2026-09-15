@@ -87,12 +87,6 @@ def write_config(path, aod_file, onnx_file):
             "lumiOpts": {"amIneeded": "-1"},
             "ccdburl": "http://alice-ccdb.cern.ch",
         },
-        "pid-tpc-base": {
-            "processIU": "true",
-            "processStandard": "false",
-            "processRun3": "false",
-            "processDummy": "true",
-        },
         "pid-tpc-service": {
             "ccdburl": "http://alice-ccdb.cern.ch",
             "pidTPC": {
