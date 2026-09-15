@@ -58,7 +58,7 @@ jobs:
       - name: Run O2Physics PID workflow
         run: |
           docker run --rm \
-            -v /cvmfs:/cvmfs:ro \
+            -v /cvmfs:/cvmfs:shared \
             -v "$GITHUB_WORKSPACE:$GITHUB_WORKSPACE" \
             -w "$GITHUB_WORKSPACE" \
             alisw/slc9-builder:latest \
